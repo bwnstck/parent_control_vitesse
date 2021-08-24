@@ -49,7 +49,7 @@ export default defineConfig(({ command }) => {
         globalComponentsDeclaration: true,
         // auto import icons
         customComponentResolvers: [
-        // https://github.com/antfu/vite-plugin-icons
+          // https://github.com/antfu/vite-plugin-icons
           ViteIconsResolver({
             componentPrefix: '',
           }),
