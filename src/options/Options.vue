@@ -2,7 +2,7 @@
   <main class="px-4 py-10 text-center text-gray-700 dark:text-gray-200">
     <pixelarticons-sliders class="icon-btn mx-2 text-2xl" />
     <div>Options</div>
-    <p class="mt-2 opacity-50">This is the options page</p>
+    <p class="mt-2 opacity-50">Wörter nach denen gefiltert wird</p>
 
     <input
       v-model="storageParentControl"
@@ -16,5 +16,5 @@
 </template>
 
 <script setup lang="ts">
-import { storageParentControl } from '~/logic/storage';
+import { storageParentControl } from '~/logic/storage'
 </script>

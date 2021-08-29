@@ -43,6 +43,11 @@ export async function getManifest(): Promise<Manifest.WebExtensionManifest> {
       'http://*/',
       'https://*/',
     ],
+    // applications: {
+    //   gecko: {
+    //     id: 'info@flimmerkiste.xyz',
+    //   },
+    // },
     // this is required on dev for Vite script to load
     content_security_policy: isDev
       ? `script-src \'self\' http://localhost:${port}; object-src \'self\'`
