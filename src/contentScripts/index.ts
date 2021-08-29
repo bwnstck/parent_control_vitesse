@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 // import { onMessage } from 'webext-bridge'
 
@@ -8,33 +9,29 @@
 //   console.log(`[vitesse-webext] Navigate from page "${data.title}"`)
 // })
 
-import { findButtons, findLinks } from './helpers';
+import { findButtons, findLinks, Target } from './helpers';
 
-// const targetButton = findButtonbyTextContent('\nZahlungspflichtig bestellen\n');
+const targets: Target[] = [];
+
 const targetButtons = findButtons();
 const targetLinks = findLinks();
 
-targetButtons?.forEach(btn => {
-  btn.innerText = 'Rufste lieber mein deinen Sohn an :)';
+targetButtons?.forEach((btn) => {
+  targets.push(btn);
+});
 
-  btn.addEventListener('click', () => {
-    if (window.confirm('Du willst was kaufen? Schreib deinem Sohn ne Mail')) {
+targetLinks?.forEach((lnk) => {
+  targets.push(lnk);
+});
+
+targets.forEach((target): void => {
+  target.innerText = 'Rufste lieber ma deinen Sohn an :)';
+  console.log({ target });
+  if (target instanceof HTMLAnchorElement)
+    target.href = '';
+
+  target.addEventListener('click', () => {
+    if (window.confirm('Du willst was kaufen? Schreib deinem Sohn ne Mail'))
       window.location.href = 'mailto:yourTrustWorthyFamilyMember@gmail.de';
-    } else {
-      return
-    }
-  })
-
-})
-targetLinks?.forEach(lnk => {
-  lnk.innerText = 'Rufste lieber mein deinen Sohn an :)';
-
-  lnk.addEventListener('click', () => {
-    if (window.confirm('Du willst was kaufen? Schreib deinem Sohn ne Mail')) {
-      window.location.href = 'mailto:yourTrustWorthyFamilyMember@gmail.de';
-    } else {
-      return
-    }
-  })
-
-})
+  });
+});

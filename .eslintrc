@@ -1,6 +1,8 @@
 {
   "extends": "@antfu",
   "rules": {
-    "no-unused-vars": "error"
+    "no-unused-vars": "error",
+    "semi": "off",
+    "@typescript-eslint/semi": "off"
   }
 }

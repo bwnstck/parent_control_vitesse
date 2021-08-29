@@ -1,27 +1,29 @@
-const regex = /Kasse/gi
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/indent */
+const regex = /Kasse/gi;
 
-export const findButtons = (): HTMLButtonElement[] | undefined => {
-    const buttons = document.getElementsByTagName('button');
-    const foundButtons = []
-    for (let i = 0; i < buttons.length; i++) {
-        if (regex.test(buttons[i].innerText)) {
-            console.log(buttons[i].innerText, regex.test(buttons[i].innerText))
-            foundButtons.push(buttons[i])
+export type Target = HTMLButtonElement | HTMLAnchorElement;
+
+const checkRegex = (element: HTMLCollectionOf<Target>) => {
+    const foundItems = [];
+    for (let i = 0; i < element.length; i++) {
+        if (regex.test(element[i].innerText)) {
+            console.log(element[i].innerText, regex.test(element[i].innerText));
+            foundItems.push(element[i]);
         }
     }
-    console.log({ foundButtons })
-    return foundButtons
+    return foundItems;
+};
+export const findButtons = (): Target[] | undefined => {
+    const buttons = document.getElementsByTagName('button');
+    const foundButtons = checkRegex(buttons);
+    console.log({ foundButtons });
+    return foundButtons;
 };
 
-export const findLinks = (): HTMLAnchorElement[] | undefined => {
+export const findLinks = (): Target[] | undefined => {
     const links = document.getElementsByTagName('a');
-    const foundLinks = []
-    for (let i = 0; i < links.length; i++) {
-        if (regex.test(links[i].innerText)) {
-            console.log(links[i].innerText, regex.test(links[i].innerText))
-            foundLinks.push(links[i])
-        }
-    }
-    console.log({ foundLinks })
-    return foundLinks
-}
+    const foundLinks = checkRegex(links);
+    console.log({ foundLinks });
+    return foundLinks;
+};
