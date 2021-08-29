@@ -3,6 +3,8 @@
   "rules": {
     "no-unused-vars": 0,
     "@typescript-eslint/indent": 0,
-    "vue/html-self-closing": 0
+    "vue/html-self-closing": 0,
+    "semi": "off",
+    "@typescript-eslint/semi": "off"
   }
 }
