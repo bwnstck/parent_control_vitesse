@@ -7,16 +7,39 @@ if (import.meta.hot)
   // @ts-expect-error for background HMR on dev
   import('/@vite/client')
 
+let lastTabId = 0
+
 browser.runtime.onInstalled.addListener((): void => {
   // eslint-disable-next-line no-console
-  console.log('Extension installed')
+  console.log('Extension installed',)
 })
 
+browser.tabs.onUpdated.addListener(async (tabId) => {
+  console.log("update", tabId)
+  if (tabId === lastTabId) {
+    return
+  }
+  console.log("Update", tabId)
+  sendMessage('store', {
+    targetWords: `${storageParentControl.value}`
+  }, {
+    context: 'content-script', tabId
+  })
+  lastTabId = tabId
+})
 
 // see shim.d.ts for type declaration
-browser.tabs.onActivated.addListener(async ({ tabId }) => {
-  sendMessage('store', { targetWords: `${storageParentControl.value}` }, { context: 'content-script', tabId })
+browser.tabs.onCreated.addListener(async ({ id }) => {
+  console.log("onCreate", id)
+  if (id) {
+    sendMessage('store', {
+      targetWords: `${storageParentControl.value}`
+    }, {
+      context: 'content-script', tabId: id
+    })
+  }
 
 })
+
 
 

@@ -1,12 +1,6 @@
 <template>
-  <a
-    class="icon-btn mx-2 text-2xl w-auto"
-    rel="noreferrer"
-    href="https://github.com/antfu/vitesse-webext"
-    target="_blank"
-    title="GitHub"
-  >
-    <div class="flex justify-center content-center">
+  <a class="icon-btn mx-2 text-2xl w-auto" rel="noreferrer" href="#" title="">
+    <div class="mb-5 flex flex-col justify-items-center items-center">
       <img
         class="w-12"
         src="../../assets/icon-512.png"

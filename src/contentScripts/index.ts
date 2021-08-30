@@ -8,8 +8,8 @@ const targets: Target[] = [];
 
 
 export const startFilter = async () => {
-  const targetButtons = findButtons();
-  const targetLinks = findLinks();
+  const targetButtons = await findButtons();
+  const targetLinks = await findLinks();
 
   targetButtons?.forEach((btn) => {
     targets.push(btn);
@@ -19,11 +19,12 @@ export const startFilter = async () => {
     targets.push(lnk);
   });
 
-
   targets.forEach((target): void => {
-    target.innerText = 'Rufste lieber ma deinen Sohn an :)';
+    target.innerText = 'HACKED';
     if (target instanceof HTMLAnchorElement)
       target.href = '';
+    if (target instanceof HTMLButtonElement)
+      target.disabled = true;
 
     target.addEventListener('click', () => {
       if (window.confirm('Du willst was kaufen? Schreib deinem Sohn ne Mail'))
@@ -32,4 +33,7 @@ export const startFilter = async () => {
   });
 }
 
-startFilter()
+window.addEventListener('load', (event) => {
+  console.log("PAGE FULLY LOADED")
+  startFilter()
+});
